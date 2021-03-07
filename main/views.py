@@ -10,9 +10,12 @@ def index(request):
 def crawling(request):
     user_id = request.POST.get('user_id')
     user_pwd = request.POST.get('user_pwd')
-    if engine.login_check(user_id, user_pwd):
+    print(user_id, user_pwd)
+
+    user_response = engine.login(user_id, user_pwd)
+    if engine.login_check(user_response):
         print('OK')
+        return render(request, 'main/index.html')
     else:
-        print('No')
-    html = engine.get_html('http://kutis.kyonggi.ac.kr/webkutis/view/hs/wssj1/wssj170s.jsp?submenu=2')
+        return render(request, 'main/login_fail.html')
 

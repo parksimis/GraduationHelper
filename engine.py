@@ -3,15 +3,10 @@ from bs4 import BeautifulSoup
 from getpass import getpass
 import pandas as pd
 
-
-
-def login_check(user_id, user_pwd):
-
+def login(user_id, user_pwd):
     session = requests.session()
 
     URL = 'https://kutis.kyonggi.ac.kr/webkutis/view/hs/wslogin/loginCheck.jsp'
-    user_id = user_id
-    user_pwd = getpass(user_pwd)
 
     data = {
         'username': '',
@@ -23,16 +18,16 @@ def login_check(user_id, user_pwd):
 
     response = session.post(URL, data=data)
     response.raise_for_status()
+    return response
+
+def login_check(response):
 
     text = response.text
-    if text.find('alert') == -1:
+    if text.find('alert') == -1 or text.find('flag=0') != -1:
         return True
     else:
-        if text.find('flag=0') != -1:
-            return True
+        return False
 
-
-    session.close()
 
 
 def get_html(url):
