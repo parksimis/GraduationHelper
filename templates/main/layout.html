@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>경기대 졸업요건 진단</title>
+    <link rel="stylesheet" type="text/css" href="../../static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/index.css">
+</head>
+<body>
+<div id="wrap">
+    <header>
+        <div id="headerBox">
+            <div id="logo">
+                <h1>
+                    <a href="{% url 'index' %}" class="h_logo">
+                        <span class="blind">kgu</span>
+                    </a>
+                </h1>
+            </div>
+            <div id="header">
+                <h3>경기대 졸업요건 진단 프로그램</h3>
+            </div>
+        </div>
+    </header>
+    <article>
+        <section>
+            <div id="container">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </section>
+    </article>
+    <footer>
+        <div id="footerBox">
+
+        </div>
+    </footer>
+
+
+</div>
+
+</body>
+</html>

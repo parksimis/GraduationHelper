@@ -1,0 +1,30 @@
+/*
+common.css
+*/
+
+
+* {
+    margin: 0 auto;
+}
+
+#wrap {
+    position: relative;
+    max-width: 100%;
+    background-color: #fff;
+
+}
+
+html, body, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, q, s, dl, dt, dd, ol, ul, li, fieldset, form, input, table, tr, th, td {
+    line-height: 1.5em;
+    margin: 0;
+    padding: 0;
+}
+
+.blind {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    width: 1px;
+    height: 1px;
+}
