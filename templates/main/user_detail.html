@@ -1,0 +1,54 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+
+<div id="content">
+    <form action="#" method="post">
+        {% csrf_token %}
+        <fieldset id='major_box' class="detail_form">
+            <legend>학과</legend>
+            <input id='major' type="text" value="{{department}}" name="user_id" disabled>
+        </fieldset>
+        <fieldset id="department" class="detail_form">
+            <legend>단일 전공 여부</legend>
+                <label>단일전공</label><input type="radio" name="double_major" value="FALSE">
+                <label>복수전공</label><input type="radio" name="double_major" value="TRUE">
+        </fieldset>
+        <fieldset id="double_major_info" name="hakgwa_cd" style="height: 80px;">
+            <legend>복수 전공 학과 선택</legend>
+            <div>
+                <label>대학</label>
+                <select id="select1" style="width: 100%;">
+                    <option value="00000" selected="">선택하세요</option>
+                </select>
+            </div>
+            <div>
+                <label>학과</label>
+                <select name="" id="select2" style="width: 100%;">
+                </select>
+            </div>
+            <div>
+                <label>전공</label>
+                <select name="" id="select3" style="width: 100%;">
+                </select>
+            </div>
+        </fieldset>
+        <fieldset id="radio" class="detail_form">
+            <legend>외국인 여부</legend>
+            {% if foreigner %}
+                <label>KOREAN</label><input type="radio" name="foreigner" value="FALSE">
+                <label>FOREIGNER</label><input type="radio" name="foreigner" value="TRUE" checked>
+            {% else %}
+                <label>KOREAN</label><input type="radio" name="foreigner" value="FALSE" checked>
+                <label>FOREIGNER</label><input type="radio" name="foreigner" value="TRUE">
+            {% endif %}
+        </fieldset>
+
+
+        <div id="submitBox">
+            <input type="submit" id="submit_btn" class="index_form" value="로그인">
+        </div>
+    </form>
+</div>
+
+{% endblock %}
