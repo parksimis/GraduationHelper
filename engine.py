@@ -18,19 +18,18 @@ def login(user_id, user_pwd):
 
     response = session.post(URL, data=data)
     response.raise_for_status()
-    return response
+    return response, session
 
-def login_check(response):
+def login_check(response, session):
 
     text = response.text
     if text.find('alert') == -1 or text.find('flag=0') != -1:
-        return True
+        return True, session
     else:
         return False
 
 
-
-def get_html(url):
+def get_html(url, session):
     '''
     URL 주소를 받아서, html 페이지를 scrapping 하는 method
     ========================================================
@@ -45,3 +44,31 @@ def get_html(url):
     html = BeautifulSoup(response.text, "html.parser")
     return html
 
+
+def get_user_info(session):
+    html = get_html('https://kutis.kyonggi.ac.kr:443/webkutis/view/hs/wshj1/wshj111s.jsp?submenu=1&m_menu=wsco1s02&s_menu=wshj111s', session)
+
+    department = get_user_department(html)
+    foreigner = check_foreigner(html)
+    return department, foreigner
+
+
+
+def get_user_department(html):
+
+    department = html.select('thead')[1].select('td')[6].text
+    if department.find('전공') != -1:
+        department = department.split('전공')[0] + '전공'
+    elif department.find('학과') != -1:
+        department = department.split('학과')[0] + '학과'
+    else :
+        department = department.split('학부')[0] + '학부'
+
+    return department
+
+def check_foreigner(html):
+    foreigner = html.select('thead')[1].select('td')[16].text
+    if foreigner == '외국인':
+        return True
+    else:
+        return False

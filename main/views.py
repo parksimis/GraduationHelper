@@ -12,10 +12,19 @@ def crawling(request):
     user_pwd = request.POST.get('user_pwd')
     print(user_id, user_pwd)
 
-    user_response = engine.login(user_id, user_pwd)
-    if engine.login_check(user_response):
+    user_response, session = engine.login(user_id, user_pwd)
+    if engine.login_check(user_response, session):
         print('OK')
-        return render(request, 'main/index.html')
+        department, foreigner = engine.get_user_info(session)
+        print(department, foreigner)
+        context = {
+            'department': department,
+            'foreigner': foreigner
+        }
+        return render(request, 'main/user_detail.html', context)
     else:
         return render(request, 'main/login_fail.html')
+
+
+
 
