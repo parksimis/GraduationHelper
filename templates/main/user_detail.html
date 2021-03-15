@@ -18,18 +18,26 @@
             <legend>복수 전공 학과 선택</legend>
             <div>
                 <label>대학</label>
-                <select id="select1" style="width: 100%;">
+                <select id="A" onchange="itemChange(this)" style="width: 100%;">
                     <option value="00000" selected="">선택하세요</option>
+                    <option value="A1216">▶ 진성애교양대학</option>
+                    <option value="A1470">▶ 인문대학</option>
+                    <option value="A1480">▶ 예술체육대</option>
+                    <option value="A1430">▶ 지식정보서비스대학</option>
+                    <option value="A1435">▶ 사화과학대학</option>
+                    <option value="A4455">▶ 소프트웨어경영대학</option>
+                    <option value="A1455">▶ 융합과학대학</option>
+                    <option value="A2440">▶ 창의공과대학</option>
                 </select>
             </div>
             <div>
                 <label>학과</label>
-                <select name="" id="select2" style="width: 100%;">
+                <select id="B" onchange="itemChange(this)" style="width: 100%;">
                 </select>
             </div>
             <div>
                 <label>전공</label>
-                <select name="" id="select3" style="width: 100%;">
+                <select id="C" style="width: 100%;">
                 </select>
             </div>
         </fieldset>
