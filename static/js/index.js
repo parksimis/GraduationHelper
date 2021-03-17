@@ -135,12 +135,11 @@ var major = {"rows":[
                 ]
         }
 
-
 function itemChange(o){
 
     var major_data = major.rows;
     var division = String.fromCharCode((o.id.charCodeAt()+1));
-    var tt = o.value;
+    var parent_value = o.value;
 
     var _init_data = '00000';
     var _init_msg = '선택하세요';
@@ -161,7 +160,7 @@ function itemChange(o){
 
     if (major_data.length > 0 ){
         for(var i=0; i<major_data.length; i++){
-            if(major_data[i].div == division && major_data[i].up == tt){
+            if(major_data[i].div == division && major_data[i].up == parent_value){
                 _html += "<option value=\""+major_data[i].code+"\" \>"+major_data[i].kname+"</option>";
             }
         }
@@ -169,8 +168,8 @@ function itemChange(o){
         _html += "<option value=\""+_init_data+"\" selected \>"+_no_data_msg+"</option>";
     }
     $("#"+division).append(_html);
-    var selec = $('#B option:selected').text()
-    if (!selec.includes('선택') && !selec.includes('▶') && $('#C option').length == 1){
+    var selected_value = $('#B option:selected').text()
+    if (!selected_value.includes('선택') && !selected_value.includes('▶') && $('#C option').length == 1){
         $('#C option').remove();
         $('#C').attr('disabled', '');
     } else {
