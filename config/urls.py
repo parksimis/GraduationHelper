@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('login/', crawling, name='crawling'),
+    path('login/crawltable', crawl_table, name='crawl_table')
 ]
