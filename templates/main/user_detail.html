@@ -44,11 +44,11 @@
         <fieldset id="radio" class="detail_form">
             <legend>외국인 여부</legend>
             {% if foreigner %}
-                <label>KOREAN</label><input type="radio" name="foreigner" value="FALSE">
-                <label>FOREIGNER</label><input type="radio" name="foreigner" value="TRUE" checked>
+                <label>KOREAN</label><input type="radio" name="foreigner" value="FALSE" disabled>
+                <label>FOREIGNER</label><input type="radio" name="foreigner" value="TRUE" checked >
             {% else %}
                 <label>KOREAN</label><input type="radio" name="foreigner" value="FALSE" checked>
-                <label>FOREIGNER</label><input type="radio" name="foreigner" value="TRUE">
+                <label>FOREIGNER</label><input type="radio" name="foreigner" value="TRUE" disabled>
             {% endif %}
         </fieldset>
         <input type="hidden" id='session' value="{{session}}">
