@@ -11,8 +11,13 @@
         </fieldset>
         <fieldset id="department" class="detail_form">
             <legend>단일 전공 여부</legend>
+                {% if double_major is None %}
                 <label>단일전공</label><input type="radio" name="double_major" value="FALSE" checked>
-                <label>복수전공</label><input type="radio" name="double_major" value="TRUE">
+                <label>복수전공</label><input type="radio" name="double_major" value="TRUE" disabled>
+                {% else %}
+                <label>단일전공</label><input type="radio" name="double_major" value="FALSE" disabled>
+                <label>복수전공</label><input type="radio" name="double_major" value="TRUE" checked>
+                {% endif %}
         </fieldset>
         <fieldset id="double_major_info" name="hakgwa_cd" style="height: 80px;" disabled="">
             <legend>복수 전공 학과 선택</legend>

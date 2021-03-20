@@ -19,10 +19,11 @@ def crawling(request):
 
     if engine.login_check(user_response, session):
         department, foreigner = engine.get_user_info(session)
-        # request.session['sessions'] = session
+        double_major = engine.check_double_major(session)
         context = {
             'department': department,
-            'foreigner': foreigner
+            'foreigner': foreigner,
+            'double_major': double_major,
         }
         return render(request, 'main/user_detail.html', context)
     else:
@@ -36,8 +37,11 @@ def crawl_table(request):
     user_pwd = request.session['user_pwd']
     user_response, session = engine.login(user_id, user_pwd)
 
-    tt = engine.crawl_table(session)
-    print(tt)
+    table = engine.crawl_table(session)
+    registration = engine.crawl_registration(session)
+
+    final = engine.final_table(table, registration)
+    print(final)
 
     return render(request, 'main/user_detail.html')
 
