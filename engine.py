@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-from getpass import getpass
 import pandas as pd
+
 
 def login(user_id, user_pwd):
     session = requests.session()
@@ -62,6 +62,18 @@ def check_foreigner(html):
     else:
         return False
 
+def check_double_major(session):
+    html = get_html('https://kutis.kyonggi.ac.kr/webkutis/view/hs/wshj1/wshj115s.jsp?submenu=2', session)
+
+    tbody = html.select('.list06 tbody tr')
+    double_major = None
+    for i in range(len(tbody)):
+        tr = tbody[i].select('td')
+        if (tr[2].text == '제1부전공' and tr[4].text == '전공승인'):
+            double_major = tr[3].text
+
+    return double_major
+
 def get_user_info(session):
     html = get_html('https://kutis.kyonggi.ac.kr:443/webkutis/view/hs/wshj1/wshj111s.jsp?submenu=1&m_menu=wsco1s02&s_menu=wshj111s', session)
 
@@ -69,6 +81,27 @@ def get_user_info(session):
     foreigner = check_foreigner(html)
     return department, foreigner
 
+def crawl_registration(session):
+    html = get_html('https://kutis.kyonggi.ac.kr/webkutis/view/hs/wssu3/wssu320s.jsp?m_menu=wsco1s05&s_menu=wssu320s', session)
+
+    tbody = html.select('.list06 tbody tr')
+    sugang = []
+    registration = pd.DataFrame(columns=['이수구분', '인증구분', '년도 학기', '학수코드',
+                          '교과목명', '학점', '설계학점', '등급', '유효구분'])
+
+    for i in range(len(tbody)):
+        tr = tbody[i].select('td')
+
+        subject = tr[2].text.replace('보기', '').strip()
+        div = tr[3].text
+        grade = int(tr[4].text)
+
+        sugang.append([div, subject, grade])
+
+    for i in range(len(sugang)):
+        registration.loc[len(registration), ['이수구분', '교과목명', '학점']] = sugang[i]
+
+    return registration
 
 def crawl_table(session):
     html = get_html('http://kutis.kyonggi.ac.kr/webkutis/view/hs/wssj1/wssj170s.jsp?submenu=2', session)
@@ -90,3 +123,11 @@ def crawl_table(session):
     hakjeom = hakjeom[hakjeom['유효구분'] == '유효']
 
     return hakjeom
+
+def final_table(table, registration):
+    if len(registration) != 0:
+        final = pd.concat([table, registration], ignore_index=True)
+    else:
+        final = table
+
+    return final
