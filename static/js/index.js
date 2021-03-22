@@ -12,6 +12,10 @@ $(document).ready(function (){
         }
     });
 
+    // $('#okButton').click( function (){
+    //     $('#content').slideDown(2000);
+    // });
+
 })
 
 
@@ -176,3 +180,4 @@ function itemChange(o){
         $('#C').removeAttr('disabled')
     }
 }
+
