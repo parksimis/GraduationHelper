@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm
 import engine
 
 # Create your views here.
@@ -33,12 +32,23 @@ def crawling(request):
 
 
 def crawl_table(request):
+
     user_id = request.session['user_id']
     user_pwd = request.session['user_pwd']
     user_response, session = engine.login(user_id, user_pwd)
 
+    user_depart = request.POST.get('major')
+
+    double_chk = request.POST.get('double_chk')
+
+
+    if double_chk == 'True':
+        double_major = request.POST.get('double_major')
+    else:
+        double_major = False
+
+    foreigner = request.POST.get('foreigner')
     table = engine.crawl_table(session)
-    registration = engine.crawl_registration(session)
 
     context = {
         'table': table,
