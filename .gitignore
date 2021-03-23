@@ -480,5 +480,5 @@ $RECYCLE.BIN/
 
 # User Create directory
 secrets.json
-
+temp/
 # End of https://www.toptal.com/developers/gitignore/api/python,vscode,pycharm,django,windows,macos
