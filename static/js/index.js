@@ -1,12 +1,12 @@
 /* index.js */
 
 $(document).ready(function (){
-    $("input:radio[name=double_major]").click(function (){
-        if($("input[name=double_major]:checked").val() == "TRUE"){
+    $("input:radio[name=double_chk]").click(function (){
+        if($("input[name=double_chk]:checked").val() == "True"){
             $("fieldset[name=hakgwa_cd]").removeAttr('disabled');
             // radio 버튼의 value 값이 TRUE(==복수전공) 이라면 활성화
 
-        }else if($("input[name=double_major]:checked").val() == "FALSE"){
+        }else if($("input[name=double_chk]:checked").val() == "False"){
               $("fieldset[name=hakgwa_cd]").attr("disabled",'');
             // radio 버튼의 value 값이 FALSE(== 단일전공)이라면 비활성화
         }
@@ -166,13 +166,16 @@ function itemChange(o){
         for(var i=0; i<major_data.length; i++){
             if(major_data[i].div == division && major_data[i].up == parent_value){
                 _html += "<option value=\""+major_data[i].code+"\" \>"+major_data[i].kname+"</option>";
+                $('#double_major').val(major_data[i].kname);
             }
         }
     } else {
         _html += "<option value=\""+_init_data+"\" selected \>"+_no_data_msg+"</option>";
     }
     $("#"+division).append(_html);
+
     var selected_value = $('#B option:selected').text()
+
     if (!selected_value.includes('선택') && !selected_value.includes('▶') && $('#C option').length == 1){
         $('#C option').remove();
         $('#C').attr('disabled', '');

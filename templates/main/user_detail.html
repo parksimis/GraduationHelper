@@ -7,16 +7,16 @@
         {% csrf_token %}
         <fieldset id='major_box' class="detail_form">
             <legend>학과</legend>
-            <input id='major' type="text" value="{{department}}" name="user_id" disabled>
+            <input id='major' type="text" name="major" value="{{department}}" readonly="">
         </fieldset>
         <fieldset id="department" class="detail_form">
             <legend>단일 전공 여부</legend>
                 {% if double_major is None %}
-                <label>단일전공</label><input type="radio" name="double_major" value="FALSE" checked>
-                <label>복수전공</label><input type="radio" name="double_major" value="TRUE" disabled>
+                <label>단일전공</label><input type="radio" name="double_chk" value="False" checked>
+                <label>복수전공</label><input type="radio" name="double_chk" value="True">
                 {% else %}
-                <label>단일전공</label><input type="radio" name="double_major" value="FALSE" disabled>
-                <label>복수전공</label><input type="radio" name="double_major" value="TRUE" checked>
+                <label>단일전공</label><input type="radio" name="double_chk" value="False" disabled>
+                <label>복수전공</label><input type="radio" name="double_chk" value="True" checked>
                 {% endif %}
         </fieldset>
         <fieldset id="double_major_info" name="hakgwa_cd" style="height: 80px;" disabled="">
@@ -44,18 +44,20 @@
                 <label>전공</label>
                 <select id="C" style="width: 100%;">
                 </select>
+
             </div>
         </fieldset>
         <fieldset id="radio" class="detail_form">
             <legend>외국인 여부</legend>
             {% if foreigner %}
-                <label>KOREAN</label><input type="radio" name="foreigner" value="FALSE" disabled>
-                <label>FOREIGNER</label><input type="radio" name="foreigner" value="TRUE" checked >
+                <label>KOREAN</label><input type="radio" name="foreigner" value="False" disabled>
+                <label>FOREIGNER</label><input type="radio" name="foreigner" value="True" checked>
             {% else %}
-                <label>KOREAN</label><input type="radio" name="foreigner" value="FALSE" checked>
-                <label>FOREIGNER</label><input type="radio" name="foreigner" value="TRUE" disabled>
+                <label>KOREAN</label><input type="radio" name="foreigner" value="False" checked>
+                <label>FOREIGNER</label><input type="radio" name="foreigner" value="True" disabled>
             {% endif %}
         </fieldset>
+        <input type="hidden" id='double_major' name="double_major">
         <div id="submitBox">
             <input type="submit" id="submit_btn" class="index_form" value="진단하기">
         </div>
