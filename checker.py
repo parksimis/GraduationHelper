@@ -14,25 +14,25 @@ maj_dict = {
 def course_2012(major_1, major_2, foreigner, records):
     global maj_dict
     '''
-    cul: 교양(기타) 학점
-    maj_1: 주전공 학점
-    maj_r1: 주전공 전공필수
-    maj_c1: 주전공 선택필수
-    maj_2: 복수전공 학점
-    maj_r2: 복수전공 전공필수
-    maj_c2: 복수전공 선택필수
-    total: 총 학점
-    necessary: 필수교양 이수여부
+    0. cul: 교양(기타) 학점
+    1. maj_1: 주전공 학점
+    2. maj_r1: 주전공 전공필수
+    3. maj_c1: 주전공 선택필수
+    4. maj_2: 복수전공 학점
+    5. maj_r2: 복수전공 전공필수
+    6. maj_c2: 복수전공 선택필수
+    7. total: 총 학점
+    8. necessary: 필수교양 이수여부
     '''
     cul, maj_1, maj_r1, maj_c1, maj_2, maj_r2, maj_c2, total, necessary = 0, 0, 0, 0, 0, 0, 0, 0, False
 
     # 단일전공 재학생 (외국인 포함)
     if major_2 == False: 
-        for rec in records: # 각 이수구분
+        for div, rec in records.items(): # 각 이수구분
             for sbj in rec: # 각 과목
                 if sbj['유효구분'] != '유효':
                     continue
-                if '전공필수' in rec:
+                if '전공필수' in div:
                     maj_r1 += 1
                     maj_1 += int(sbj['학점'])
                     total += int(sbj['학점'])
@@ -52,6 +52,7 @@ def course_2012(major_1, major_2, foreigner, records):
         maj_1 = maj_dict[major_1][1] - maj_1
         maj_r1 = maj_dict[major_1][2] - maj_r1
         maj_c1 = maj_dict[major_1][3] - maj_c1
+        total = maj_dict[major_1][7] - total
         
         return [cul, maj_1, maj_r1, maj_c1, maj_2, maj_r2, maj_c2, total, necessary]
 
@@ -67,17 +68,12 @@ def check(user_id, major_1, major_2, foreigner, records):
     if major_2 == False:
         if data[-1] == False:
             result['교양필수'] = '미이수'
-
-        if (maj_dict[major_1][1] - data[1]) > 0:
-            result['전공학점'] = maj_dict[major_1][1] - data[1]
-        
-        if (maj_dict[major_1][2] - data[2]) > 0:
-            result['본전공필수'] = maj_dict[major_1][2] - data[2]
-
-        if (maj_dict[major_1][3] - data[3]) > 0:
-            result['본전공선택'] = maj_dict[major_1][3] - data[3]
-
-        if (maj_dict[major_1][7] - data[7]) > 0:
-            result['총학점'] = maj_dict[major_1][7] - data[7]
-        
+        if data[1] > 0:
+            result['전공학점'] = data[1]
+        if data[2] > 0:
+            result['본전공필수'] = data[2]
+        if data[3] > 0:
+            result['본전공선택'] = data[3]
+        if data[7] > 0:
+            result['총학점'] = data[7]
         return result
