@@ -40,9 +40,10 @@ def crawl_table(request):
     table = engine.crawl_table(session)
     registration = engine.crawl_registration(session)
 
-    final = engine.final_table(table, registration)
-    print(final)
+    context = {
+        'table': table,
+    }
 
-    return render(request, 'main/user_detail.html')
+    return render(request, 'main/result.html', context)
 
 
