@@ -46,7 +46,7 @@ def course_2012(major_1, major_2, foreigner, records, maj_dict):
             elif sbj['이수구분'] == maj_dict[major_1][0]:
                 maj_1 += int(sbj['학점'])
                 total += int(sbj['학점'])
-            elif sbj['이수구분'] == maj_dict[major_2][0]:
+            elif major_2 != False and sbj['이수구분'] == maj_dict[major_2][0]:
                 maj_2 += int(sbj['학점'])
                 total += int(sbj['학점'])
             else:
