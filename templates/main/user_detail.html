@@ -12,11 +12,11 @@
         <fieldset id="department" class="detail_form">
             <legend>단일 전공 여부</legend>
                 {% if double_major is None %}
-                <label>단일전공</label><input type="radio" name="double_chk" value="False" checked>
-                <label>복수전공</label><input type="radio" name="double_chk" value="True">
+                <label>단일전공</label><input type="radio" name="double_chk" value="" checked>
+                <label>복수전공</label><input type="radio" name="double_chk" value="T" disabled>
                 {% else %}
-                <label>단일전공</label><input type="radio" name="double_chk" value="False" disabled>
-                <label>복수전공</label><input type="radio" name="double_chk" value="True" checked>
+                <label>단일전공</label><input type="radio" name="double_chk" value="" disabled>
+                <label>복수전공</label><input type="radio" name="double_chk" value="T" checked>
                 {% endif %}
         </fieldset>
         <fieldset id="double_major_info" name="hakgwa_cd" style="height: 80px;" disabled="">
@@ -50,11 +50,11 @@
         <fieldset id="radio" class="detail_form">
             <legend>외국인 여부</legend>
             {% if foreigner %}
-                <label>KOREAN</label><input type="radio" name="foreigner" value="False" disabled>
-                <label>FOREIGNER</label><input type="radio" name="foreigner" value="True" checked>
+                <label>KOREAN</label><input type="radio" name="foreigner" value="" disabled>
+                <label>FOREIGNER</label><input type="radio" name="foreigner" value="T" checked>
             {% else %}
-                <label>KOREAN</label><input type="radio" name="foreigner" value="False" checked>
-                <label>FOREIGNER</label><input type="radio" name="foreigner" value="True" disabled>
+                <label>KOREAN</label><input type="radio" name="foreigner" value="" checked>
+                <label>FOREIGNER</label><input type="radio" name="foreigner" value="T" disabled>
             {% endif %}
         </fieldset>
         <input type="hidden" id='double_major' name="double_major">
