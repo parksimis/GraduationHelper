@@ -2,11 +2,11 @@
 
 $(document).ready(function (){
     $("input:radio[name=double_chk]").click(function (){
-        if($("input[name=double_chk]:checked").val() == "True"){
+        if($("input[name=double_chk]:checked").val() == "T"){
             $("fieldset[name=hakgwa_cd]").removeAttr('disabled');
             // radio 버튼의 value 값이 TRUE(==복수전공) 이라면 활성화
 
-        }else if($("input[name=double_chk]:checked").val() == "False"){
+        }else if($("input[name=double_chk]:checked").val() == ""){
               $("fieldset[name=hakgwa_cd]").attr("disabled",'');
             // radio 버튼의 value 값이 FALSE(== 단일전공)이라면 비활성화
         }
@@ -166,7 +166,6 @@ function itemChange(o){
         for(var i=0; i<major_data.length; i++){
             if(major_data[i].div == division && major_data[i].up == parent_value){
                 _html += "<option value=\""+major_data[i].code+"\" \>"+major_data[i].kname+"</option>";
-                $('#double_major').val(major_data[i].kname);
             }
         }
     } else {
@@ -184,3 +183,11 @@ function itemChange(o){
     }
 }
 
+function getName(){
+    if ($('#C option').length == 0){
+        $('#double_major').val($('#B option:selected').text())
+        alert($('#B option:selected').text())
+    } else {
+        $('#double_major').val($('#C option:selected').text())
+    }
+}

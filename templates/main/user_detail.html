@@ -13,7 +13,7 @@
             <legend>단일 전공 여부</legend>
                 {% if double_major is None %}
                 <label>단일전공</label><input type="radio" name="double_chk" value="" checked>
-                <label>복수전공</label><input type="radio" name="double_chk" value="T" disabled>
+                <label>복수전공</label><input type="radio" name="double_chk" value="T">
                 {% else %}
                 <label>단일전공</label><input type="radio" name="double_chk" value="" disabled>
                 <label>복수전공</label><input type="radio" name="double_chk" value="T" checked>
@@ -27,12 +27,14 @@
                     <option value="00000" selected="">선택하세요</option>
                     <option value="A1216">▶ 진성애교양대학</option>
                     <option value="A1470">▶ 인문대학</option>
-                    <option value="A1480">▶ 예술체육대</option>
+                    <option value="A1480">▶ 예술체육대학</option>
                     <option value="A1430">▶ 지식정보서비스대학</option>
                     <option value="A1435">▶ 사화과학대학</option>
                     <option value="A4455">▶ 소프트웨어경영대학</option>
                     <option value="A1455">▶ 융합과학대학</option>
-                    <option value="A2440">▶ 창의공과대학</option>
+                    <option value="A1440">▶ 창의공과대학</option>
+                    <option value="A2440">▶ 창의공과대</option>
+                    <option value="A4460">▶ 관광문화대학</option>
                 </select>
             </div>
             <div>
@@ -57,9 +59,9 @@
                 <label>FOREIGNER</label><input type="radio" name="foreigner" value="T" disabled>
             {% endif %}
         </fieldset>
-        <input type="hidden" id='double_major' name="double_major">
+        <input type="hidden" id='double_major' name="double_major" >
         <div id="submitBox">
-            <input type="submit" id="submit_btn" class="index_form" value="진단하기">
+            <input type="submit" id="submit_btn" class="index_form" value="진단하기" onclick="getName()">
         </div>
     </form>
 </div>
