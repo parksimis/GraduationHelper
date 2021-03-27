@@ -186,7 +186,6 @@ function itemChange(o){
 function getName(){
     if ($('#C option').length == 0){
         $('#double_major').val($('#B option:selected').text())
-        alert($('#B option:selected').text())
     } else {
         $('#double_major').val($('#C option:selected').text())
     }
