@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-import engine
+import engine, checker
 
 # Create your views here.
 
@@ -33,23 +33,30 @@ def crawling(request):
 
 def crawl_table(request):
 
+    # 세션에서 저장해놓은 사용자 아이디와 비밀번호 가져오기
     user_id = request.session['user_id']
     user_pwd = request.session['user_pwd']
+    # 로그인 재진행
     user_response, session = engine.login(user_id, user_pwd)
-
+    # 사용자 학과
     user_depart = request.POST.get('major')
+    # 복수전공 확인 변수 ('True' / 'False' ) 로 들어옴
+    double_chk = bool(request.POST.get('double_chk'))
+    # 외국인 여부
+    foreigner = bool(request.POST.get('foreigner'))
 
-    double_chk = request.POST.get('double_chk')
-
-
-    if double_chk == 'True':
+    if double_chk is True:
+        # 복수전공
         double_major = request.POST.get('double_major')
     else:
+        # 단일전공이면 False로 변경
         double_major = False
 
-    foreigner = request.POST.get('foreigner')
     table = engine.crawl_table(session)
 
+    temp = checker.check(user_id[:4], major_1=user_depart, major_2=double_major, foreigner=foreigner, records=table)
+
+    print(temp)
     context = {
         'table': table,
     }
