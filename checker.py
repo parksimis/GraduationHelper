@@ -24,7 +24,7 @@ def course_2012(major_1, major_2, foreigner, records, maj_dict):
                     maj_r1 += 1
                     maj_1 += int(sbj['학점'])
                     total += int(sbj['학점'])
-                elif div[5:-1] in major_2: # 복수전공
+                elif major_2 != False and div[5:-1] in major_2: # 복수전공
                     maj_r2 += 1
                     maj_2 += int(sbj['학점'])
                     tatal += int(sbj['학점'])
@@ -36,7 +36,7 @@ def course_2012(major_1, major_2, foreigner, records, maj_dict):
                     maj_c1 += 1
                     maj_1 += int(sbj['학점'])
                     total += int(sbj['학점'])
-                elif div[5:-1] in major_2: # 복수전공
+                elif major_2 != False and div[5:-1] in major_2: # 복수전공
                     maj_c2 += 1
                     maj_2 += int(sbj['학점'])
                     tatal += int(sbj['학점'])
@@ -98,7 +98,7 @@ def course_2017(major_1, major_2, foreigner, records, maj_dict):
                     maj_r1 += 1
                     maj_1 += int(sbj['학점'])
                     total += int(sbj['학점'])
-                elif div[5:-1] in major_2: # 복수전공
+                elif major_2 != False and div[5:-1] in major_2: # 복수전공
                     maj_r2 += 1
                     maj_2 += int(sbj['학점'])
                     tatal += int(sbj['학점'])
@@ -110,7 +110,7 @@ def course_2017(major_1, major_2, foreigner, records, maj_dict):
                     maj_c1 += 1
                     maj_1 += int(sbj['학점'])
                     total += int(sbj['학점'])
-                elif div[5:-1] in major_2: # 복수전공
+                elif major_2 != False and div[5:-1] in major_2: # 복수전공
                     maj_c2 += 1
                     maj_2 += int(sbj['학점'])
                     tatal += int(sbj['학점'])
