@@ -2,9 +2,12 @@
 
 {% block content %}
 
-{% for key, value in user.items %}
-{{key}} {{value}} <br>
-{% endfor %}
+{% if result|length == 0 %}
+    you can graduate!!!!
+{% else %}
+    {% for key, value in result.items %}
+    {{key}} {{value}} <br>
+    {% endfor %}
 
-
+{% endif %}
 {% endblock %}
