@@ -12,12 +12,34 @@ $(document).ready(function (){
         }
     });
 
+
+    $('#submit_btn').on('click', function (){
+        $.ajax({
+            type: "post",
+            data: {'csrfmiddlewaretoken': csrf_token},
+            dataType: "json",
+
+            beforeSend: function (){
+                $('#submit_btn').hide();
+                $('#loader').show();
+            },
+
+            complete: function(){
+                $('#loader').hide();
+            },
+            success: function (){
+
+            },
+            error: function (){
+            }
+        });
+    });
+
     // $('#okButton').click( function (){
     //     $('#content').slideDown(2000);
     // });
 
 })
-
 
 var major = {"rows":[
                 {"id":1,"kname":"▶진성애교양대학","up":"A1200","div":"A","display_order":"111010X","ename":"▶","code":"A1216"},
@@ -190,3 +212,5 @@ function getName(){
         $('#double_major').val($('#C option:selected').text())
     }
 }
+
+

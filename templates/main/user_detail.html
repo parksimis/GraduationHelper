@@ -1,7 +1,7 @@
 {% extends 'main/layout.html' %}
 
 {% block content %}
-
+{% load static %}
 <div id="content">
     <form action="{% url 'crawl_table' %}" method="post">
         {% csrf_token %}
@@ -62,8 +62,15 @@
         <input type="hidden" id='double_major' name="double_major" >
         <div id="submitBox">
             <input type="submit" id="submit_btn" class="index_form" value="진단하기" onclick="getName()">
+<!--            <input type="image" src="{%static 'image/ajax-loader.gif'%}" style="background-color: tomato; display: none;">-->
+            <div id="loader" style="text-align: center; display: none;">
+                진단 중
+                <img src="{%static 'image/ajax-loader.gif'%}">
+            </div>
         </div>
     </form>
+    <div>
+
 </div>
 
 {% endblock %}
