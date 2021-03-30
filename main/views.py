@@ -54,11 +54,11 @@ def crawl_table(request):
 
     table = engine.crawl_table(session)
 
-    # temp = checker.check(user_id[:4], major_1=user_depart, major_2=double_major, foreigner=foreigner, records=table)
+    result = checker.check(user_id[:4], major_1=user_depart, major_2=double_major, foreigner=foreigner, records=table)
+    print(result)
 
-    print(double_major)
     context = {
-        'table': table,
+        'result': result,
     }
 
     return render(request, 'main/result.html', context)
