@@ -1,6 +1,6 @@
 from mdict import dict_select 
 
-# 2012 교육과정 (12, 13, 14, 15, 16 학번)
+# 2012/2016 교육과정 (12, 13, 14, 15, 16 학번)
 def course_2012(major_1, major_2, foreigner, records, maj_dict):
     '''
     0. cul: 교양(기타) 학점
@@ -33,7 +33,10 @@ def course_2012(major_1, major_2, foreigner, records, maj_dict):
                     total += int(sbj['학점'])
             elif '선택필수' in rec:
                 if div[5:-1] in major_1: # 본전공
-                    maj_c1 += 1
+                    if '중어중문' in major_1:
+                        maj_r1 += 1
+                    else:
+                        maj_c1 += 1
                     maj_1 += int(sbj['학점'])
                     total += int(sbj['학점'])
                 elif major_2 != False and div[5:-1] in major_2: # 복수전공
