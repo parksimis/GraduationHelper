@@ -1,13 +1,13 @@
 {% extends 'main/layout.html' %}
 
 {% block content %}
-
-{% if result|length == 0 %}
+<div id="content">
+    {% if result|length == 0 %}
     you can graduate!!!!
-{% else %}
-    {% for key, value in result.items %}
-    {{key}} {{value}} <br>
-    {% endfor %}
-
-{% endif %}
+    {% else %}
+        {% for key, value in result.items %}
+        {{key}} {{value}} <br>
+        {% endfor %}
+    {% endif %}
 {% endblock %}
+</div>

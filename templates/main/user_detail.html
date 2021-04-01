@@ -59,7 +59,8 @@
                 <label>FOREIGNER</label><input type="radio" name="foreigner" value="T" disabled>
             {% endif %}
         </fieldset>
-        <input type="hidden" id='double_major' name="double_major" >
+        <input type="hidden" id='double_major' name="double_major">
+        <input type="hidden" id="depart_name" name="depart_name" value="{{depart_name}}">
         <div id="submitBox">
             <input type="submit" id="submit_btn" class="index_form" value="진단하기" onclick="getName()">
 <!--            <input type="image" src="{%static 'image/ajax-loader.gif'%}" style="background-color: tomato; display: none;">-->

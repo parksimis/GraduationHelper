@@ -17,9 +17,10 @@ def crawling(request):
     user_response, session = engine.login(user_id, user_pwd)
 
     if engine.login_check(user_response, session):
-        department, foreigner = engine.get_user_info(session)
+        depart_name, department, foreigner = engine.get_user_info(session)
         double_major = engine.check_double_major(session)
         context = {
+            'depart_name': depart_name,
             'department': department,
             'foreigner': foreigner,
             'double_major': double_major,
@@ -44,6 +45,9 @@ def crawl_table(request):
     double_chk = bool(request.POST.get('double_chk'))
     # 외국인 여부
     foreigner = bool(request.POST.get('foreigner'))
+    # 학부 이름
+    depart_name = request.POST.get('depart_name')
+    depart_name = depart_name.replace('ㆍ', '').replace('▶', '')
 
     if double_chk is True:
         # 복수전공
@@ -55,7 +59,6 @@ def crawl_table(request):
     table = engine.crawl_table(session)
 
     result = checker.check(user_id[:4], major_1=user_depart, major_2=double_major, foreigner=foreigner, records=table)
-    print(result)
 
     context = {
         'result': result,

@@ -70,6 +70,7 @@ def get_html(url, session):
 
     return html
 
+
 def get_user_department(html):
     '''
     사용자의 학생기본정보 Table 스크래핑해 전공을 가져오는 함수
@@ -86,10 +87,11 @@ def get_user_department(html):
         department = department.split('전공')[0] + '전공'
     elif department.find('학과') != -1:
         department = department.split('학과')[0] + '학과'
-    else :
+    else:
         department = department.split('학부')[0] + '학부'
 
     return department
+
 
 def check_foreigner(html):
     '''
@@ -106,6 +108,33 @@ def check_foreigner(html):
         return True
     else:
         return False
+
+def get_depart_name(html):
+    depart_name = html.select_one('#memInfo dd').text
+    depart_name = re.sub('[^가-힣()]', '', depart_name)
+
+    return depart_name
+
+def get_user_info(session):
+    '''
+    사용자의 기본정보를 스크래핑하는 함수(get_user_department, check_foreigner 종합)
+
+    * Input
+    :param session: 연결되는 세션
+
+    * Output
+    :return:
+        depart_name : 학부(소속)
+        department : 사용자 학과
+        foreigner : 외국인 여부 (T/F)
+    '''
+    html = get_html('https://kutis.kyonggi.ac.kr:443/webkutis/view/hs/wshj1/wshj111s.jsp?submenu=1&m_menu=wsco1s02&s_menu=wshj111s', session)
+
+    department = get_user_department(html)
+    foreigner = check_foreigner(html)
+    depart_name = get_depart_name(html)
+
+    return depart_name, department, foreigner
 
 def check_double_major(session):
     '''
@@ -128,23 +157,6 @@ def check_double_major(session):
 
     return double_major
 
-def get_user_info(session):
-    '''
-    사용자의 기본정보를 스크래핑하는 함수(get_user_department, check_foreigner 종합)
-
-    * Input
-    :param session: 연결되는 세션
-
-    * Output
-    :return:
-        department : 사용자 학과
-        foreigner : 외국인 여부 (T/F)
-    '''
-    html = get_html('https://kutis.kyonggi.ac.kr:443/webkutis/view/hs/wshj1/wshj111s.jsp?submenu=1&m_menu=wsco1s02&s_menu=wshj111s', session)
-
-    department = get_user_department(html)
-    foreigner = check_foreigner(html)
-    return department, foreigner
 
 def crawl_table(session):
     '''
