@@ -80,11 +80,6 @@ h3 {
     font-size: 16px;
     letter-spacing: -.5px;
 }
-#footerBox {
-    position: relative;
-    height: 176px;
-    background-color: #f9f9f9;
-}
 
 .detail_form{
     height: 60px;
@@ -124,4 +119,101 @@ h3 {
 
 /*#content {*/
 /*    display: none;*/
+/*}*/
+
+/* ---------------- footer ------------------*/
+
+#footerBox {
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    height: 240px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+#inner_box {
+    position: relative;
+}
+.other_site{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 10px 0;
+    text-align: left;
+}
+.other_site li {
+    display: inline-block;
+    list-style-type: none;
+    width: auto;
+    height: auto;
+    vertical-align: middle;
+}
+
+.other_site a {
+    display: block;
+    overflow: hidden;
+    line-height: 100px;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+#sns_share {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+#sns_share ul{
+    list-style-type: none;
+    position: absolute;
+    bottom: 49px;
+    right: 39px;
+}
+#sns_share li{
+    display: inline-block;
+    overflow: hidden;
+    list-style-type: none;
+    width: 22px;
+    height: 20px;
+    margin-left: 15px;
+    vertical-align: middle;
+}
+#sns_share a{
+    display: block;
+    height: 20px;
+    color: #a5a5a5;
+}
+#sns_share i {
+    width: 23px;
+    height: 23px;
+    margin: 0;
+}
+
+#email a {
+    font-size: 23px;
+}
+#github a{
+    font-size: 21px;
+}
+.xi-rss {
+    vertical-align: -3px;
+}
+
+#caution {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 19px 0;
+    color: #323232;
+    text-align: center;
+    font-family: Tahoma, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    word-spacing: 2px;
+    line-height: 10px;
+    border-top: solid 1px #efefef;
+}
+/*#footerBox {*/
+/*    position: relative;*/
+/*    height: 176px;*/
+/*    background-color: #f9f9f9;*/
 /*}*/
