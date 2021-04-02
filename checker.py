@@ -157,7 +157,7 @@ def course_2017(major_1, major_2, foreigner, records, maj_dict):
 
 
 # 2018 교육과정 (18, 19, 20 학번)
-def course_2018(major_1, major_2, foreigner, records, maj_dict):
+def course_2018(major_1, major_2, foreigner, records, maj_dict, depart_name):
     '''
     0. cul: 교양(기타) 학점
     1. maj_1: 본전공 학점
@@ -168,8 +168,9 @@ def course_2018(major_1, major_2, foreigner, records, maj_dict):
     6. maj_c2: 복수전공 선택필수
     7. total: 총 학점
     8. necessary: 필수교양 학점
+    9. dept_n: 학부기초(학부필수)
     '''
-    cul, maj_1, maj_r1, maj_c1, maj_2, maj_r2, maj_c2, total, necessary = 0, 0, 0, 0, 0, 0, 0, 0, 0
+    cul, maj_1, maj_r1, maj_c1, maj_2, maj_r2, maj_c2, total, necessary, dept_n = 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
     for div, rec in records.items(): # 각 이수구분
         for sbj in rec: # 각 과목
@@ -205,6 +206,10 @@ def course_2018(major_1, major_2, foreigner, records, maj_dict):
             elif major_2 != False and sbj['이수구분'] == maj_dict[major_2][0]:
                 maj_2 += int(sbj['학점'])
                 total += int(sbj['학점'])
+            elif depart_name in div:
+                dept_n += 1
+                maj_1 += int(sbj['학점'])
+                total += int(sbj['학점'])
             else:
                 if sbj['교과목명'] in ['진리탐구', '공감소통', '사랑실천']:
                     necessary += int(sbj['학점'])
@@ -230,13 +235,14 @@ def course_2018(major_1, major_2, foreigner, records, maj_dict):
         else:
             necessary = False
         cul = 35 - cul
+    dept_n = maj_dict[major_1][8] - dept_n
     total = maj_dict[major_1][7] - total
     
-    return [cul, maj_1, maj_r1, maj_c1, maj_2, maj_r2, maj_c2, total, necessary]
+    return [cul, maj_1, maj_r1, maj_c1, maj_2, maj_r2, maj_c2, total, necessary, dept_n]
 
 
 # main function
-def check(user_id, major_1, major_2, foreigner, records):
+def check(user_id, major_1, major_2, foreigner, records, depart_name):
     maj_dict = dict_select(user_id[2:4])
     result = {}
 
@@ -245,7 +251,7 @@ def check(user_id, major_1, major_2, foreigner, records):
     elif user_id[2:4] == '17':
         data = course_2017(major_1, major_2, foreigner, records, maj_dict)
     elif user_id[2:4] in ['18', '19', '20']:
-        data = course_2018(major_1, major_2, foreigner, records, maj_dict)
+        data = course_2018(major_1, major_2, foreigner, records, maj_dict, depart_name)
     
     if data[8] == False:
         result['필수교양'] = '미이수'
@@ -265,5 +271,7 @@ def check(user_id, major_1, major_2, foreigner, records):
         result['복수전공선택'] = data[6]
     if data[7] > 0:
         result['총학점'] = data[7]
+    if user_id[2:4] in ['18', '19', '20'] and data[9] > 0:
+        result['학부기초(학부필수)'] = data[9]
 
     return result
