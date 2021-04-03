@@ -133,41 +133,48 @@ h3 {
 }
 #inner_box {
     position: relative;
+    height: 150px;
 }
 .other_site{
     max-width: 1180px;
     margin: 0 auto;
-    padding: 10px 0;
+    padding: 20px 0 0 20%;
     text-align: left;
 }
 .other_site li {
-    display: inline-block;
+    margin-top: 3px;
+    font-size: 12px;
+    display: block;
     list-style-type: none;
     width: auto;
     height: auto;
     vertical-align: middle;
 }
-
+.other_site span{
+    margin-right: 8px;
+    margin-left: 8px;
+}
 .other_site a {
-    display: block;
     overflow: hidden;
-    line-height: 100px;
     text-decoration: none;
     margin: 0;
     padding: 0;
+    color: black;
+    font-weight: bold;
 }
-
+.other_site a:hover{
+    text-decoration-line: underline;
+}
 #sns_share {
     position: relative;
     max-width: 1180px;
     margin: 0 auto;
 }
-
 #sns_share ul{
     list-style-type: none;
     position: absolute;
-    bottom: 49px;
-    right: 39px;
+    bottom: 10px;
+    right: 20%;
 }
 #sns_share li{
     display: inline-block;
@@ -188,17 +195,15 @@ h3 {
     height: 23px;
     margin: 0;
 }
-
 #email a {
     font-size: 23px;
 }
 #github a{
-    font-size: 21px;
+    font-size: 23px;
 }
 .xi-rss {
     vertical-align: -3px;
 }
-
 #caution {
     max-width: 1180px;
     margin: 0 auto;
@@ -206,14 +211,9 @@ h3 {
     color: #323232;
     text-align: center;
     font-family: Tahoma, Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
     word-spacing: 2px;
     line-height: 10px;
     border-top: solid 1px #efefef;
 }
-/*#footerBox {*/
-/*    position: relative;*/
-/*    height: 176px;*/
-/*    background-color: #f9f9f9;*/
-/*}*/
