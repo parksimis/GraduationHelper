@@ -60,8 +60,11 @@ def crawl_table(request):
 
     result = checker.check(user_id[:4], major_1=user_depart, major_2=double_major, foreigner=foreigner, records=table, depart_name=depart_name)
 
+    grade = ['교양학점', '본전공학점', '복수전공학점', '총학점']
+
     context = {
         'result': result,
+        'grade': grade,
     }
 
     return render(request, 'main/result.html', context)

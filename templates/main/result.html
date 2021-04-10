@@ -1,13 +1,47 @@
 {% extends 'main/layout.html' %}
+{% load mathfilters %}
 
 {% block content %}
-<div id="content">
-    {% if result|length == 0 %}
-    you can graduate!!!!
+<div id="content" style="padding: 20px">
+    <div class="container">
+        {% if result|length == 0 %}
+    <p>
+        you can graduate!!!!
+    </p>
     {% else %}
-        {% for key, value in result.items %}
-        {{key}} {{value}} <br>
-        {% endfor %}
+        <table id="result_table" class="table table-bordered text-center">
+            <caption>부족한 학점</caption>
+        <thead>
+            <tr class="thead-dark">
+                <th>요건</th>
+                <th>학점/개수</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in result.items %}
+            {% if key in grade %}
+            <tr>
+                <td>{{key}}</td>
+                <td>{{value}} 학점</td>
+            </tr>
+            {% elif key == '필수교양' %}
+            <tr>
+                <td>{{key}}</td>
+                <td>{{value}} 미이수</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>{{key}}</td>
+                <td>{{value}} 개</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
     {% endif %}
-{% endblock %}
+    </table>
 </div>
+
+
+</div>
+{% endblock %}
+

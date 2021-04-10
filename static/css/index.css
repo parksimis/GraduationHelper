@@ -217,3 +217,11 @@ h3 {
     line-height: 10px;
     border-top: solid 1px #efefef;
 }
+
+/* result page */
+#result_table caption{
+    caption-side: top;
+    text-align: center;
+    color: black;
+    font-size: 18px;
+}
