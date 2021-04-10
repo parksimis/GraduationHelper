@@ -9,6 +9,7 @@ pandas = "*"
 bs4 = "*"
 requests = "*"
 numpy = "*"
+django-mathfilters = "*"
 
 [dev-packages]
 
